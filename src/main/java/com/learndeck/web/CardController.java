@@ -44,6 +44,17 @@ public class CardController {
                 linkTo(methodOn(CardController.class).all()).withSelfRel());
     }
 
+    @GetMapping("/cards/{id}")
+    public CollectionModel<EntityModel<Card>> allCourse(@PathVariable Long id){
+
+        List<EntityModel<Card>> cards = repository.getCardsFromClass(id).stream()
+                .map(assembler::toModel)
+                .collect(Collectors.toList());
+
+        return CollectionModel.of(cards,
+                linkTo(methodOn(CardController.class).allCourse(id)).withSelfRel());
+    }
+
     @GetMapping("/card/{id}")
     public EntityModel<Card> one(@PathVariable Long id) {
 
