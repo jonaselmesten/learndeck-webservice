@@ -1,4 +1,4 @@
-package user;
+package com.learndeck.domain;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
