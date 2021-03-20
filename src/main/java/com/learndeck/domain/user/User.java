@@ -1,20 +1,14 @@
-package com.learndeck.domain;
+package com.learndeck.domain.user;
 
 import javax.persistence.*;
 
 @Entity
 public class User {
 
-    enum UserType {
-        STUDENT, TEACHER;
-    }
-
     @Column(name="user_id")
     private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long userId;
     @Column(name="user_type")
     private String userType;
-
-    public User() {}
 
     public User(long userId, String userType) {
         this.userId = userId;

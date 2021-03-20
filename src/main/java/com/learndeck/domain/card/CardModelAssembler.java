@@ -1,4 +1,4 @@
-package com.learndeck.domain;
+package com.learndeck.domain.card;
 
 import com.learndeck.web.UserController;
 import org.springframework.hateoas.EntityModel;
@@ -9,12 +9,12 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Component
-public class UserModelAssembler implements RepresentationModelAssembler<User, EntityModel<User>> {
+public class CardModelAssembler implements RepresentationModelAssembler<Card, EntityModel<Card>> {
 
     @Override
-    public EntityModel<User> toModel(User user) {
+    public EntityModel<Card> toModel(Card user) {
         return EntityModel.of(user,
-                linkTo(methodOn(UserController.class).one(user.getUserId())).withSelfRel(),
-                linkTo(methodOn(UserController.class).all()).withRel("users"));
+                linkTo(methodOn(UserController.class).one(user.getCardId())).withSelfRel(),
+                linkTo(methodOn(UserController.class).all()).withRel("cards"));
     }
 }

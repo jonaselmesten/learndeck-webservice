@@ -1,15 +1,15 @@
 package com.learndeck.web;
 
-import com.learndeck.domain.UserModelAssembler;
+import com.learndeck.domain.user.UserModelAssembler;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
-import com.learndeck.domain.User;
+import com.learndeck.domain.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import com.learndeck.domain.UserNotFoundException;
-import com.learndeck.domain.UserRepository;
+import com.learndeck.domain.user.UserNotFoundException;
+import com.learndeck.domain.user.UserRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;

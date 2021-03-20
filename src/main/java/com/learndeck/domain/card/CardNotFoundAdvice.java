@@ -1,4 +1,4 @@
-package com.learndeck.domain;
+package com.learndeck.domain.card;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-public class UserNotFoundAdvice {
+public class CardNotFoundAdvice {
 
     @ResponseBody
-    @ExceptionHandler(UserNotFoundException.class)
+    @ExceptionHandler(CardNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String userNotFoundHandler(UserNotFoundException ex) {
+    public String userNotFoundHandler(CardNotFoundException ex) {
         return ex.getMessage();
     }
 

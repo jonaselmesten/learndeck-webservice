@@ -1,4 +1,4 @@
-package com.learndeck.domain;
+package com.learndeck.domain.user;
 
 public class UserNotFoundException extends RuntimeException {
     public UserNotFoundException(Long id) {
