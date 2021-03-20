@@ -8,11 +8,13 @@ public class Card {
     @Column(name="card_id")
     private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long cardId;
     @Column(name="course_id")
-    private final long courseId;
+    private long courseId;
     @Column(name="general_difficulty")
     private double generalDifficulty;
     private String question;
     private String answer;
+
+    public Card() {}
 
     public Card(long cardId, long courseId, double generalDifficulty, String question, String answer) {
         this.cardId = cardId;

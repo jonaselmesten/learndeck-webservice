@@ -1,5 +1,6 @@
 package com.learndeck.domain.card;
 
+import com.learndeck.web.CardController;
 import com.learndeck.web.UserController;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
@@ -14,7 +15,7 @@ public class CardModelAssembler implements RepresentationModelAssembler<Card, En
     @Override
     public EntityModel<Card> toModel(Card user) {
         return EntityModel.of(user,
-                linkTo(methodOn(UserController.class).one(user.getCardId())).withSelfRel(),
-                linkTo(methodOn(UserController.class).all()).withRel("cards"));
+                linkTo(methodOn(CardController.class).one(user.getCardId())).withSelfRel(),
+                linkTo(methodOn(CardController.class).all()).withRel("cards"));
     }
 }

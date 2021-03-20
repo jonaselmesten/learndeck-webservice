@@ -12,7 +12,7 @@ public class CardNotFoundAdvice {
     @ResponseBody
     @ExceptionHandler(CardNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String userNotFoundHandler(CardNotFoundException ex) {
+    public String cardNotFoundHandler(CardNotFoundException ex) {
         return ex.getMessage();
     }
 
