@@ -1,4 +1,4 @@
-package com.learndeck;
+package user;
 
 import javax.persistence.*;
 
