@@ -10,6 +10,8 @@ public class User {
     @Column(name="user_type")
     private String userType;
 
+    public User() {}
+
     public User(long userId, String userType) {
         this.userId = userId;
         this.userType = userType;

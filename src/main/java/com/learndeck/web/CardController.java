@@ -4,10 +4,7 @@ import com.learndeck.domain.card.Card;
 import com.learndeck.domain.card.CardModelAssembler;
 import com.learndeck.domain.card.CardNotFoundException;
 import com.learndeck.domain.card.CardRepository;
-import com.learndeck.domain.user.User;
-import com.learndeck.domain.user.UserModelAssembler;
-import com.learndeck.domain.user.UserNotFoundException;
-import com.learndeck.domain.user.UserRepository;
+import com.learndeck.domain.study.StudyCard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
@@ -45,15 +42,17 @@ public class CardController {
     }
 
     @GetMapping("/cards/{id}")
-    public CollectionModel<EntityModel<Card>> allCourse(@PathVariable Long id){
+    public CollectionModel<EntityModel<Card>> allCards(@PathVariable Long id){
 
         List<EntityModel<Card>> cards = repository.getCardsFromClass(id).stream()
                 .map(assembler::toModel)
                 .collect(Collectors.toList());
 
         return CollectionModel.of(cards,
-                linkTo(methodOn(CardController.class).allCourse(id)).withSelfRel());
+                linkTo(methodOn(CardController.class).allCards(id)).withSelfRel());
     }
+
+
 
     @GetMapping("/card/{id}")
     public EntityModel<Card> one(@PathVariable Long id) {

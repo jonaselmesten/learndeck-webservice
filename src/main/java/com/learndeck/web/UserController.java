@@ -1,5 +1,8 @@
 package com.learndeck.web;
 
+import com.learndeck.domain.card.Card;
+import com.learndeck.domain.card.CardModelAssembler;
+import com.learndeck.domain.card.CardRepository;
 import com.learndeck.domain.user.UserModelAssembler;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
@@ -48,6 +51,5 @@ public class UserController {
 
         return assembler.toModel(user);
     }
-
 
 }

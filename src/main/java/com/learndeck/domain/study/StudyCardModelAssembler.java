@@ -1,4 +1,4 @@
-package com.learndeck.domain.user;
+package com.learndeck.domain.study;
 
 import com.learndeck.web.UserCourseController;
 import com.learndeck.web.UserController;
@@ -10,13 +10,11 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Component
-public class UserModelAssembler implements RepresentationModelAssembler<User, EntityModel<User>> {
+public class StudyCardModelAssembler implements RepresentationModelAssembler<StudyCard, EntityModel<StudyCard>> {
 
     @Override
-    public EntityModel<User> toModel(User user) {
-        return EntityModel.of(user,
-                linkTo(methodOn(UserController.class).one(user.getUserId())).withSelfRel(),
-                linkTo(methodOn(UserCourseController.class).studentCourses(user.getUserId())).withRel("courses"));
+    public EntityModel<StudyCard> toModel(StudyCard user) {
+        return EntityModel.of(user);
 
     }
 }

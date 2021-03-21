@@ -1,6 +1,28 @@
 package com.learndeck.domain.card;
 
+import com.learndeck.domain.study.StudyCard;
+
 import javax.persistence.*;
+import java.sql.Date;
+
+@SqlResultSetMapping(name="reviewMapping",
+        classes={
+                @ConstructorResult(
+                        targetClass= StudyCard.class,
+                        columns={
+                                @ColumnResult(name="card_id", type=Long.class),
+                                @ColumnResult(name="course_id", type=Long.class),
+                                @ColumnResult(name="user_id", type=Long.class),
+                                @ColumnResult(name="general_difficulty", type=Double.class),
+                                @ColumnResult(name="next_review_date", type= String.class),
+                                @ColumnResult(name="very_easy_pushed", type=Integer.class),
+                                @ColumnResult(name="easy_pushed", type=Integer.class),
+                                @ColumnResult(name="medium_pushed", type=Integer.class),
+                                @ColumnResult(name="hard_pushed", type=Integer.class)
+                        }
+                )
+        }
+)
 
 @Entity
 public class Card {
