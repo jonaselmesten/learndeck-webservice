@@ -1,15 +1,15 @@
 package com.learndeck.web;
 
 import com.learndeck.domain.card.Card;
+import com.learndeck.domain.card.CardNotFoundException;
 import com.learndeck.domain.card.CardRepository;
 import com.learndeck.domain.study.StudyCard;
 import com.learndeck.domain.study.StudyCardModelAssembler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.List;
@@ -41,4 +41,16 @@ public class StudyCardController {
         return CollectionModel.of(cards,
                 linkTo(methodOn(StudyCardController.class).studyCourse(userId, courseId)).withSelfRel());
     }
+
+    @PostMapping("/user/{userId}/study-course/{courseId}/card/{difficulty}")
+    public ResponseEntity<?> studyCard(@PathVariable Long userId, @PathVariable Long courseId, @PathVariable Long difficulty) {
+
+
+        return ResponseEntity.ok()
+                .header("Custom-Header", "foo")
+                .body("Custom header set");
+    }
+
+
+
 }

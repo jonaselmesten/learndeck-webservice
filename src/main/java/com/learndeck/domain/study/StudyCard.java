@@ -11,21 +11,15 @@ public class StudyCard implements Serializable {
     private Long userId;
     private Double difficulty;
     private Date nextReview;
-    private Integer veryEasy;
-    private Integer easy;
-    private Integer medium;
-    private Integer hard;
+    private Integer dateModifier;
 
-    public StudyCard(Long cardId, Long courseId, Long userId, Double difficulty, String nextReview, Integer veryEasy, Integer easy, Integer medium, Integer hard) {
+    public StudyCard(Long cardId, Long courseId, Long userId, Double difficulty, String nextReview, Integer dateModifier) {
         this.cardId = cardId;
         this.courseId = courseId;
         this.userId = userId;
         this.difficulty = difficulty;
         this.nextReview = Date.valueOf(nextReview);
-        this.veryEasy = veryEasy;
-        this.easy = easy;
-        this.medium = medium;
-        this.hard = hard;
+        this.dateModifier = dateModifier;
     }
 
     public Long getCardId() {
@@ -44,20 +38,8 @@ public class StudyCard implements Serializable {
         return difficulty;
     }
 
-    public Integer getEasy() {
-        return easy;
-    }
-
-    public Integer getHard() {
-        return hard;
-    }
-
-    public Integer getMedium() {
-        return medium;
-    }
-
-    public Integer getVeryEasy() {
-        return veryEasy;
+    public Integer getDateModifier() {
+        return dateModifier;
     }
 
     public Long getCourseId() {

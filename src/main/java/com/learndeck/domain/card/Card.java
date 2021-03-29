@@ -15,10 +15,7 @@ import java.sql.Date;
                                 @ColumnResult(name="user_id", type=Long.class),
                                 @ColumnResult(name="general_difficulty", type=Double.class),
                                 @ColumnResult(name="next_review_date", type= String.class),
-                                @ColumnResult(name="very_easy_pushed", type=Integer.class),
-                                @ColumnResult(name="easy_pushed", type=Integer.class),
-                                @ColumnResult(name="medium_pushed", type=Integer.class),
-                                @ColumnResult(name="hard_pushed", type=Integer.class)
+                                @ColumnResult(name="date_modifier", type=Integer.class)
                         }
                 )
         }

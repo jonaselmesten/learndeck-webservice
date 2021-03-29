@@ -38,10 +38,6 @@ public class CardRepositoryImpl implements CardRepositoryCustom {
         query.setParameter(1, userId);
         query.setParameter(2, courseId);
 
-        System.out.println("-----------SIZE:" + query.getResultList().size());
-        System.out.println("STU:" + userId);
-        System.out.println("COURSE:" + courseId);
-
         return query.getResultList();
     }
 
