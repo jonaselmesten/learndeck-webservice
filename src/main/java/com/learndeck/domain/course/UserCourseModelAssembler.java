@@ -15,7 +15,7 @@ public class UserCourseModelAssembler implements RepresentationModelAssembler<Us
     @Override
     public EntityModel<UserCourse> toModel(UserCourse course) {
         return EntityModel.of(course,
-                linkTo(methodOn(StudyCardController.class).studyCourse(course.getUserId(), course.getCourseId())).withRel("study"));
+                linkTo(methodOn(StudyCardController.class).studyCourse(course.getUserId(), course.getCourseId(), course.getCourseName())).withRel("study"));
     }
 
 }

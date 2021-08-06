@@ -28,4 +28,8 @@ public class UserCourse implements Serializable {
     public long getUserId() {
         return userId;
     }
+
+    public String getCourseName() {
+        return "Course name";
+    }
 }
