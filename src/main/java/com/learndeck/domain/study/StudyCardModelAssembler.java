@@ -17,9 +17,10 @@ public class StudyCardModelAssembler implements RepresentationModelAssembler<Stu
     @Override
     public EntityModel<StudyCard> toModel(StudyCard card) {
         return EntityModel.of(card,
-                linkTo(methodOn(StudyCardController.class).studyCard(card.getUserId(), card.getCourseId(), Difficulty.EASY.value)).withRel("easy"),
+                linkTo(methodOn(StudyCardController.class).studyCard(card.getUserId(), card.getCourseId(), Difficulty.HARD.value)).withRel("hard"),
                 linkTo(methodOn(StudyCardController.class).studyCard(card.getUserId(), card.getCourseId(), Difficulty.MEDIUM.value)).withRel("medium"),
-                linkTo(methodOn(StudyCardController.class).studyCard(card.getUserId(), card.getCourseId(), Difficulty.HARD.value)).withRel("hard")
+                linkTo(methodOn(StudyCardController.class).studyCard(card.getUserId(), card.getCourseId(), Difficulty.EASY.value)).withRel("easy"),
+                linkTo(methodOn(StudyCardController.class).studyCard(card.getUserId(), card.getCourseId(), Difficulty.VERY_EASY.value)).withRel("very_easy")
                 );
     }
 }

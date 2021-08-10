@@ -42,12 +42,11 @@ public class StudyCardController {
     @PostMapping("/user/{userId}/study-course/{courseId}/card/{difficulty}")
     public ResponseEntity<?> studyCard(@PathVariable Long userId, @PathVariable Long courseId, @PathVariable Long difficulty) {
 
+        System.out.println("STUDY!");
 
         return ResponseEntity.ok()
                 .header("Custom-Header", "foo")
                 .body("Custom header set");
     }
-
-
 
 }
