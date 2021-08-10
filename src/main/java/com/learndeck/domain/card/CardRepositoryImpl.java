@@ -30,10 +30,9 @@ public class CardRepositoryImpl implements CardRepositoryCustom {
     public List<StudyCard> getReviews(Long userId, Long courseId) {
 
         Query query = entityManager
-                .createNativeQuery("SELECT * FROM db.card  AS C " +
-                        "INNER JOIN db.card_review AS CR ON C.course_id = CR.course_id " +
-                        "WHERE user_id = ? AND CR.course_id = ? " +
-                        "GROUP BY CR.card_id", "reviewMapping");
+                .createNativeQuery("SELECT * FROM db.card_review  AS CR " +
+                        "INNER JOIN db.card AS C ON C.card_id = CR.card_id " +
+                        "WHERE user_id = ? AND CR.course_id = ? ", "reviewMapping");
 
         query.setParameter(1, userId);
         query.setParameter(2, courseId);
