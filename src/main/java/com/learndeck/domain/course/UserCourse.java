@@ -13,12 +13,15 @@ public class UserCourse implements Serializable {
     private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long userId;
     @Column(name="course_id")
     private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long courseId;
+    @Column(name="course_name")
+    private @Id @GeneratedValue(strategy = GenerationType.AUTO) String courseName;
 
     public UserCourse() {}
 
-    public UserCourse(long userId, long courseId) {
+    public UserCourse(long userId, long courseId, String courseName) {
         this.courseId = courseId;
         this.userId = userId;
+        this.courseName = courseName;
     }
 
     public long getCourseId() {
@@ -30,6 +33,6 @@ public class UserCourse implements Serializable {
     }
 
     public String getCourseName() {
-        return "Course name";
+        return courseName;
     }
 }
