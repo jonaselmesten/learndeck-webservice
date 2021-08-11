@@ -4,7 +4,6 @@ import com.learndeck.domain.card.Card;
 import com.learndeck.domain.card.CardModelAssembler;
 import com.learndeck.domain.card.CardNotFoundException;
 import com.learndeck.domain.card.CardRepository;
-import com.learndeck.domain.study.StudyCard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
@@ -41,27 +40,24 @@ public class CardController {
                 linkTo(methodOn(CardController.class).all()).withSelfRel());
     }
 
-    @GetMapping("/cards/{id}")
-    public CollectionModel<EntityModel<Card>> allCards(@PathVariable Long id){
+    @GetMapping("/courses/{courseId}/cards")
+    public CollectionModel<EntityModel<Card>> allCards(@PathVariable Long courseId){
 
-        List<EntityModel<Card>> cards = repository.getCardsFromClass(id).stream()
+        List<EntityModel<Card>> cards = repository.getCardsFromCourse(courseId).stream()
                 .map(assembler::toModel)
                 .collect(Collectors.toList());
 
         return CollectionModel.of(cards,
-                linkTo(methodOn(CardController.class).allCards(id)).withSelfRel());
+                linkTo(methodOn(CardController.class).allCards(courseId)).withSelfRel());
     }
 
+    @GetMapping("/cards/{cardId}")
+    public EntityModel<Card> one(@PathVariable Long cardId) {
 
-
-    @GetMapping("/card/{id}")
-    public EntityModel<Card> one(@PathVariable Long id) {
-
-        Card card = repository.findById(id)
-                .orElseThrow(() -> new CardNotFoundException(id));
+        Card card = repository.findById(cardId)
+                .orElseThrow(() -> new CardNotFoundException(cardId));
 
         return assembler.toModel(card);
     }
-
 
 }

@@ -3,13 +3,13 @@ package com.learndeck.domain.card;
 import com.learndeck.domain.study.StudyCard;
 
 import javax.persistence.*;
-import java.sql.Date;
 
 @SqlResultSetMapping(name="reviewMapping",
         classes={
                 @ConstructorResult(
                         targetClass= StudyCard.class,
                         columns={
+                                @ColumnResult(name="review_id", type=Long.class),
                                 @ColumnResult(name="card_id", type=Long.class),
                                 @ColumnResult(name="course_id", type=Long.class),
                                 @ColumnResult(name="user_id", type=Long.class),

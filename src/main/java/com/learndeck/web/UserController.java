@@ -43,7 +43,7 @@ public class UserController {
                 linkTo(methodOn(UserController.class).all()).withSelfRel());
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/users/{id}")
     public EntityModel<User> one(@PathVariable Long id) {
 
         User user = repository.findById(id)

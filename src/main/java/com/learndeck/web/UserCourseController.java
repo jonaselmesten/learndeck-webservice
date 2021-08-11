@@ -27,7 +27,7 @@ public class UserCourseController {
         this.assembler = assembler;
     }
 
-    @GetMapping("/user/{id}/courses")
+    @GetMapping("/courses/{userId}")
     public CollectionModel<EntityModel<UserCourse>> studentCourses(@PathVariable Long id) {
 
         List<EntityModel<UserCourse>> courses = repository.getStudentCourses(id).stream()
@@ -37,7 +37,5 @@ public class UserCourseController {
         return CollectionModel.of(courses,
                 linkTo(methodOn(UserCourseController.class).studentCourses(id)).withSelfRel());
     }
-
-
 
 }
