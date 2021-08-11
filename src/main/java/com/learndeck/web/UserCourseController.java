@@ -27,7 +27,7 @@ public class UserCourseController {
         this.assembler = assembler;
     }
 
-    @GetMapping("/courses/{userId}")
+    @GetMapping("/courses/{id}")
     public CollectionModel<EntityModel<UserCourse>> studentCourses(@PathVariable Long id) {
 
         List<EntityModel<UserCourse>> courses = repository.getStudentCourses(id).stream()
