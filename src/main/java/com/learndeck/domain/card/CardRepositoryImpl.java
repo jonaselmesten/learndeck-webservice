@@ -1,6 +1,5 @@
 package com.learndeck.domain.card;
 
-import com.learndeck.domain.study.StudyCard;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

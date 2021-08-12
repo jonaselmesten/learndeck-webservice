@@ -1,7 +1,6 @@
 package com.learndeck.web;
 
 import com.learndeck.domain.course.*;
-import com.learndeck.domain.study.StudyCard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;

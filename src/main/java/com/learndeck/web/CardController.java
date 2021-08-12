@@ -40,8 +40,8 @@ public class CardController {
                 linkTo(methodOn(CardController.class).all()).withSelfRel());
     }
 
-    @GetMapping("/courses/{courseId}/cards")
-    public CollectionModel<EntityModel<Card>> allCards(@PathVariable Long courseId){
+    @GetMapping("/courses/{id}/cards")
+    public CollectionModel<EntityModel<Card>> allCards(@PathVariable(name = "id") Long courseId){
 
         List<EntityModel<Card>> cards = repository.getCardsFromCourse(courseId).stream()
                 .map(assembler::toModel)
@@ -51,11 +51,11 @@ public class CardController {
                 linkTo(methodOn(CardController.class).allCards(courseId)).withSelfRel());
     }
 
-    @GetMapping("/cards/{cardId}")
-    public EntityModel<Card> one(@PathVariable Long cardId) {
+    @GetMapping("/cards/{id}")
+    public EntityModel<Card> one(@PathVariable Long id) {
 
-        Card card = repository.findById(cardId)
-                .orElseThrow(() -> new CardNotFoundException(cardId));
+        Card card = repository.findById(id)
+                .orElseThrow(() -> new CardNotFoundException(id));
 
         return assembler.toModel(card);
     }
