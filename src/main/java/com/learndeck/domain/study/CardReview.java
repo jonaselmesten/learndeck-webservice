@@ -5,6 +5,21 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
 
+
+@SqlResultSetMapping(name="studyCardMapping",
+        classes={
+                @ConstructorResult(
+                        targetClass= CardReview.class,
+                        columns={
+                                @ColumnResult(name="review_id", type=Long.class),
+                                @ColumnResult(name="question", type= String.class),
+                                @ColumnResult(name="answer", type= String.class),
+                        }
+                )
+        }
+)
+
+
 @Entity(name = "card_review")
 public class CardReview implements Serializable {
 
@@ -20,6 +35,8 @@ public class CardReview implements Serializable {
     private Date nextReview;
     @Column(name="date_modifier")
     private Integer dateModifier;
+    private String question;
+    private String answer;
 
     public CardReview() {}
 
@@ -37,6 +54,32 @@ public class CardReview implements Serializable {
         this.difficulty = difficulty;
         this.nextReview = Date.valueOf(nextReview);
         this.dateModifier = dateModifier;
+    }
+
+    public CardReview(Long reviewId, String question, String answer) {
+        this.reviewId = reviewId;
+        this.question = question;
+        this.answer = answer;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    public void setReviewId(Long reviewId) {
+        this.reviewId = reviewId;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public String getQuestion() {
+        return question;
     }
 
     public Long getCardId() {
