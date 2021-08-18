@@ -26,7 +26,8 @@ public class CardReviewRepositoryImpl implements CardReviewRepositoryCustom {
                         "C.answer_type, C.answer " +
                         "FROM db.card_review  AS CR " +
                         "INNER JOIN db.card AS C ON C.card_id = CR.card_id " +
-                        "WHERE user_id = ? AND CR.course_id = ? ", "reviewMapping");
+                        "WHERE user_id = ? AND CR.course_id = ? " +
+                        "ORDER BY next_review_date ", "reviewMapping");
 
         query.setParameter(1, userId);
         query.setParameter(2, courseId);
