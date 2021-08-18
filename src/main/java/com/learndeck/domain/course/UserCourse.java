@@ -1,38 +1,47 @@
 package com.learndeck.domain.course;
 
-import com.learndeck.domain.user.User;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
+
+@SqlResultSetMapping(name="userCourseMapping",
+        classes={
+                @ConstructorResult(
+                        targetClass= UserCourse.class,
+                        columns={
+                                @ColumnResult(name="course_name", type= String.class),
+                                @ColumnResult(name="due_count", type= Integer.class)
+                        }
+                )
+        }
+)
+
 @Entity
-@Table(name = "student_has_course")
 public class UserCourse implements Serializable {
 
-    @Column(name="user_id")
-    private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long userId;
-    @Column(name="course_id")
-    private @Id @GeneratedValue(strategy = GenerationType.AUTO) Long courseId;
-    @Column(name="course_name")
-    private @Id @GeneratedValue(strategy = GenerationType.AUTO) String courseName;
+    @Id @Column(name = "course_id", nullable = false)
+    private long courseId;
+    @Id @Column(name = "user_id", nullable = false)
+    private long userId;
+    private String courseName;
+    private int dueCount;
 
     public UserCourse() {}
 
-    public UserCourse(long userId, long courseId, String courseName) {
+    public UserCourse(long courseId, long userId, String courseName, int due_count) {
         this.courseId = courseId;
         this.userId = userId;
         this.courseName = courseName;
+        this.dueCount = due_count;
     }
 
-    public long getCourseId() {
-        return courseId;
-    }
+    public long getCourseId() { return courseId; }
 
-    public long getUserId() {
-        return userId;
-    }
+    public String getCourseName() { return courseName; }
 
-    public String getCourseName() {
-        return courseName;
+    public long getUserId() { return userId; }
+
+    public int getDueCount() {
+        return dueCount;
     }
 }

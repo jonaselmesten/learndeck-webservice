@@ -20,10 +20,14 @@ public class CourseRepositoryImpl implements CourseRepositoryCustom{
     public List<UserCourse> getStudentCourses(Long userId) {
 
         Query query = entityManager
-                .createNativeQuery("SELECT * FROM db.course AS C " +
+                .createNativeQuery("SELECT C.course_id, SHC.user_id, C.course_name, " +
+                        "(SELECT COUNT(*) FROM db.card_review AS due_count " +
+                        "WHERE course_id = C.course_id AND user_id = ? AND next_review_date <= curdate()) AS due_count " +
+                        "FROM db.course AS C " +
                         "INNER JOIN db.student_has_course AS SHC ON C.course_id = SHC.course_id " +
                         "WHERE SHC.user_id = ? ", UserCourse.class);
         query.setParameter(1, userId);
+        query.setParameter(2, userId);
 
         return query.getResultList();
     }
