@@ -10,16 +10,20 @@ import javax.persistence.*;
                         targetClass= CardReview.class,
                         columns={
                                 @ColumnResult(name="review_id", type=Long.class),
-                                @ColumnResult(name="card_id", type=Long.class),
-                                @ColumnResult(name="course_id", type=Long.class),
-                                @ColumnResult(name="user_id", type=Long.class),
-                                @ColumnResult(name="general_difficulty", type=Double.class),
                                 @ColumnResult(name="next_review_date", type= String.class),
-                                @ColumnResult(name="date_modifier", type=Integer.class)
+                                @ColumnResult(name="date_modifier", type=Integer.class),
+                                @ColumnResult(name="button_stats", type=String.class),
+                                @ColumnResult(name="question_type", type=String.class),
+                                @ColumnResult(name="question", type=String.class),
+                                @ColumnResult(name="answer_type", type=String.class),
+                                @ColumnResult(name="answer", type=String.class)
                         }
                 )
         }
 )
+
+
+
 
 @Entity
 public class Card {

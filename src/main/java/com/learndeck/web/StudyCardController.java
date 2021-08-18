@@ -63,7 +63,6 @@ public class StudyCardController {
 
         Optional<CardReview> updatedReview = repository.findById(id)
                 .map(review -> {
-                    review.setDifficulty(difficulty);
                     review.setNextReview(Date.valueOf(nextReview));
                     review.setDateModifier(dateModifier);
                     return repository.save(review);});

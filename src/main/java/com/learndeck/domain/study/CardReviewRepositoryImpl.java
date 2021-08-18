@@ -19,7 +19,12 @@ public class CardReviewRepositoryImpl implements CardReviewRepositoryCustom {
     public List<CardReview> getReviews(Long userId, Long courseId) {
 
         Query query = entityManager
-                .createNativeQuery("SELECT * FROM db.card_review  AS CR " +
+                .createNativeQuery("SELECT " +
+                        "review_id, next_review_date, " +
+                        "date_modifier, button_stats, " +
+                        "C.question_type, C.question, " +
+                        "C.answer_type, C.answer " +
+                        "FROM db.card_review  AS CR " +
                         "INNER JOIN db.card AS C ON C.card_id = CR.card_id " +
                         "WHERE user_id = ? AND CR.course_id = ? ", "reviewMapping");
 
