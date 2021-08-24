@@ -35,22 +35,4 @@ public class CardReviewRepositoryImpl implements CardReviewRepositoryCustom {
         return query.getResultList();
     }
 
-    @Override
-    public List<CardReview> getStudyCards(Long userId, Long courseId) {
-
-        Query query = entityManager
-                .createNativeQuery("SELECT " +
-                        "review_id, " +
-                        "C.question, " +
-                        "C.answer " +
-                        "FROM db.card  AS C " +
-                        "INNER JOIN db.card_review AS CR ON C.card_id = CR.card_id " +
-                        "WHERE user_id = ? AND CR.course_id = ? ", "studyCardMapping");
-
-        query.setParameter(1, userId);
-        query.setParameter(2, courseId);
-
-        return query.getResultList();
-    }
-
 }

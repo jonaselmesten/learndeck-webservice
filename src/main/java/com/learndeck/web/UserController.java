@@ -1,18 +1,15 @@
 package com.learndeck.web;
 
-import com.learndeck.domain.card.Card;
-import com.learndeck.domain.card.CardModelAssembler;
-import com.learndeck.domain.card.CardRepository;
+import com.learndeck.domain.user.User;
 import com.learndeck.domain.user.UserModelAssembler;
+import com.learndeck.domain.user.UserNotFoundException;
+import com.learndeck.domain.user.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
-import com.learndeck.domain.user.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import com.learndeck.domain.user.UserNotFoundException;
-import com.learndeck.domain.user.UserRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,6 +29,9 @@ public class UserController {
         this.assembler = assembler;
     }
 
+    /**
+     * Get all the users.
+     */
     @GetMapping("/users")
     public CollectionModel<EntityModel<User>> all(){
 
@@ -43,6 +43,9 @@ public class UserController {
                 linkTo(methodOn(UserController.class).all()).withSelfRel());
     }
 
+    /**
+     * Get a specific user.
+     */
     @GetMapping("/users/{id}")
     public EntityModel<User> one(@PathVariable Long id) {
 

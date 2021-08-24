@@ -4,10 +4,13 @@ import com.learndeck.domain.card.CardNotFoundException;
 import com.learndeck.domain.study.CardReview;
 import com.learndeck.domain.study.CardReviewModelAssembler;
 import com.learndeck.domain.study.CardReviewRepository;
+import com.learndeck.domain.study.CardReviewRequest;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.IanaLinkRelations;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,9 +34,12 @@ public class StudyCardController {
         this.assembler = assembler;
     }
 
-    @GetMapping("/reviews/users")
-    public CollectionModel<EntityModel<CardReview>> getUserReviews(@RequestParam(name = "user_id") Long userId,
-                                                                   @RequestParam(name = "course_id") Long courseId) {
+    /**
+     * Get all card reviews from a specific course to a specific user.
+     */
+    @RequestMapping("/courses/{id1}/reviews/users/{id2}")
+    public CollectionModel<EntityModel<CardReview>> getUserReviews(@PathVariable(name = "id1") Long courseId,
+                                                                   @PathVariable(name = "id2") Long userId) {
 
         List<EntityModel<CardReview>> cards = repository.getReviews(userId, courseId).stream()
                 .map(assembler::toModel)
@@ -43,28 +49,25 @@ public class StudyCardController {
                 linkTo(methodOn(StudyCardController.class).getUserReviews(userId, courseId)).withSelfRel());
     }
 
-    @GetMapping("/reviews/cards")
-    public CollectionModel<EntityModel<CardReview>> getUserStudyCards(@RequestParam(name = "user_id") Long userId,
-                                                                      @RequestParam(name = "course_id") Long courseId) {
-
-        List<EntityModel<CardReview>> cards = repository.getStudyCards(userId, courseId).stream()
-                .map(assembler::toModel)
-                .collect(Collectors.toList());
-
-        return CollectionModel.of(cards,
-                linkTo(methodOn(StudyCardController.class).getUserStudyCards(userId, courseId)).withSelfRel());
-    }
-
-    @PutMapping(value = "/reviews/{id}")
+    /**
+     * Updates a specific review.
+     * @param id Review id.
+     * @param reviewRequest New review data.
+     * @return The updated review.
+     */
+    @PutMapping(value = "/courses/reviews/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<?> updateReview(@PathVariable Long id,
-                                          @RequestParam Double difficulty,
-                                          @RequestParam(name = "date") String nextReview,
-                                          @RequestParam(name = "modifier") Integer dateModifier) {
+                                          @RequestBody CardReviewRequest reviewRequest) {
+
+        System.out.println(reviewRequest.getButtonStats());
+        System.out.println(reviewRequest.getNextReview());
+        System.out.println(reviewRequest.getDateModifier());
 
         Optional<CardReview> updatedReview = repository.findById(id)
                 .map(review -> {
-                    review.setNextReview(Date.valueOf(nextReview));
-                    review.setDateModifier(dateModifier);
+                    review.setButtonStats(reviewRequest.getButtonStats());
+                    review.setNextReview(Date.valueOf(reviewRequest.getNextReview()));
+                    review.setDateModifier(reviewRequest.getDateModifier());
                     return repository.save(review);});
 
         if(updatedReview.isPresent()) {
@@ -74,7 +77,10 @@ public class StudyCardController {
             return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/reviews/{id}")
+    /**
+     * Get a specific review.
+     */
+    @GetMapping("/courses/reviews/{id}")
     public EntityModel<CardReview> one(@PathVariable Long id) {
 
         CardReview studyCard = repository.findById(id)
@@ -83,7 +89,10 @@ public class StudyCardController {
         return assembler.toModel(studyCard);
     }
 
-    @GetMapping("/reviews")
+    /**
+     * Get all the reviews.
+     */
+    @GetMapping("/courses/reviews")
     public CollectionModel<EntityModel<CardReview>> all(){
 
         List<EntityModel<CardReview>> studyCards = repository.findAll().stream()

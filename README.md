@@ -11,7 +11,7 @@ Android application: https://github.com/jonaselmesten/learndeck-application
 ## General info
 Needed to run the webservice:
 * MySQL or similar DBMS for holding card data etc.
-* Amazon AWS account for image resources.
+* Amazon com.learndeck.AWS account for image resources.
 
 
 

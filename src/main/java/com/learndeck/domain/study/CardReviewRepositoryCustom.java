@@ -6,5 +6,4 @@ public interface CardReviewRepositoryCustom {
 
     List<CardReview> getReviews(Long userId, Long courseId);
 
-    List<CardReview> getStudyCards(Long userId, Long courseId);
 }

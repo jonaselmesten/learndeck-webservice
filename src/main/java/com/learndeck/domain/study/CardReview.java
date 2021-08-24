@@ -5,21 +5,23 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
 
-
-@SqlResultSetMapping(name="studyCardMapping",
+@SqlResultSetMapping(name="reviewMapping",
         classes={
                 @ConstructorResult(
                         targetClass= CardReview.class,
                         columns={
                                 @ColumnResult(name="review_id", type=Long.class),
-                                @ColumnResult(name="question", type= String.class),
-                                @ColumnResult(name="answer", type= String.class),
+                                @ColumnResult(name="next_review_date", type= String.class),
+                                @ColumnResult(name="date_modifier", type=Integer.class),
+                                @ColumnResult(name="button_stats", type=String.class),
+                                @ColumnResult(name="question_type", type=String.class),
+                                @ColumnResult(name="question", type=String.class),
+                                @ColumnResult(name="answer_type", type=String.class),
+                                @ColumnResult(name="answer", type=String.class)
                         }
                 )
         }
 )
-
-
 
 @Entity(name = "card_review")
 public class CardReview implements Serializable {
